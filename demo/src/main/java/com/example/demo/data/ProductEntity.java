@@ -2,13 +2,14 @@ package com.example.demo.data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "product")
 
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     @Column
     private String nameRu;
     @Column
@@ -24,6 +25,9 @@ public class ProductEntity {
     @Column
     private Date deleteDate;
 
+    @OneToMany(mappedBy = "productEntity", fetch = FetchType.LAZY)
+    private List<ProductImgEntity> productImgs;
+
     public ProductEntity(long id, String nameRu, String nameKz, String description, Double price, Date createDate, Date updateDate, Date deleteDate) {
         this.id = id;
         this.nameRu = nameRu;
@@ -38,11 +42,11 @@ public class ProductEntity {
     public ProductEntity() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -100,5 +104,13 @@ public class ProductEntity {
 
     public void setDeleteDate(Date deleteDate) {
         this.deleteDate = deleteDate;
+    }
+
+    public List<ProductImgEntity> getProductImgs() {
+        return productImgs;
+    }
+
+    public void setProductImgs(List<ProductImgEntity> productImgs) {
+        this.productImgs = productImgs;
     }
 }
