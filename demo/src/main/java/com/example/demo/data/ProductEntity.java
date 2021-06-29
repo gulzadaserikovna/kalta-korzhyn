@@ -1,5 +1,7 @@
 package com.example.demo.data;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -19,10 +21,13 @@ public class ProductEntity {
     @Column
     private Double price;
     @Column(updatable = false)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     private Date createDate;
     @Column
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     private Date updateDate;
     @Column
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     private Date deleteDate;
 
     @OneToMany(mappedBy = "productEntity", fetch = FetchType.LAZY)

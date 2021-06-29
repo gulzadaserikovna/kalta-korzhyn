@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+
+</head>
+
+<body>
+
+<!--методом replace, который выполняет поиск и замену-->
+<script>
+    function method1() {
+        let str = 'aaa@bbb@ccc';
+        alert(str.replace(/@/g, '!'));
+        console.log(str);
+    }
+
+    <!--substring,slice,substr(откуда отрезать, докуда отрезать)-->
+    function method2() {
+        let str = 'aaa bbb ccc';
+        return str.substring(4,7);
+    }
+
+    <!--с помощью метода split разобьем нашу строку-->
+    function method3() {
+        let str = '2025-12-31';
+        let arr = str.split('-');
+        let newStr = arr[2] + '/' + arr[1] + '/' +arr[0];
+        alert(newStr);
+    }
+
+    <!--Метод toUpperCase производит преобразование строки в верхний регистр (из маленьких букв делает большими-->
+    function method4() {
+        let str='Privet World';
+        console.log(str.toUpperCase());
+    }
+
+    <!--Метод toLowerCase производит преобразование строки в нижний регистр (из больших букв делает маленькие)-->
+    function method5() {
+        let str='Privet World';
+        console.log(str.toLowerCase());
+    }
+
+    <!--length позволяет узнать длину строки. Под длиной понимается количество символов в ней-->
+    function method6() {
+        let str='я учу javascript!';
+        console.log(str.length);
+    }
+
+
+    function method7(cut) {
+        console.log(cut.indexOf('учу'));
+    }
+
+
+    function method8() {
+        let str = 'Я-учу-javascript!';
+        console.log(str.replaceAll("-", "!"));
+    }
+
+    <!-- метод split("") позволяет разбить строки на массив подстрок-->
+    function method9() {
+        let str =  'я учу javascript!';
+        let arr = str.split(" ");
+        console.log(arr);
+    }
+
+
+    function method10() {
+        let arr = ['я', 'учу', 'javascript', '!'];
+        let str = arr.join('+');
+        console.log(str);
+    }
+
+
+    function method11(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+
+    function method12() {
+        let str = 'var_test_text';
+        let arr = str.split('_');
+        for (i=1; i<arr.length; i++) {
+            arr[i]=arr[i].substr(0,1).toUpperCase()+arr[i].substr(1)
+        }
+        console.log(arr.join(''));
+
+    }
+
+
+    function method13(cut) {
+        if (cut.length > 100) {
+            console.log(cut.substring(0,100) + "...");
+        } else {
+            console.log(cut)
+        }
+    }
+
+    function method14(str) {
+        let cut = str.split(' ');
+        for (let i = 0; i < cut.length; i++) {
+            cut[i] = cut[i].slice(0, 1).toUpperCase() + cut[i].slice(1);
+        }
+        let result = cut.join(' ');
+        console.log(result);
+    }
+
+    function method15(str) {
+        let result = str.split('').reverse().join('');
+        console.log(result);
+    }
+
+
+    <!-- Циклы JS-->
+
+    <!-- Метод concat сливает указанные массивы в один общий массив.  -->
+    function method16() {
+    let a = [1,2,3];
+    let b = [4,5,6];
+        let c = a.concat(b);
+        console.log(c);
+    }
+
+    <!-- Метод reverse изменяет порядок элементов в массиве на обратный. -->
+    function method17() {
+        let a = [1,2,3];
+        a.reverse();
+        console.log(a);
+    }
+
+    <!-- Метод push добавляет неограниченное количество элементов в конец массива. -->
+    function method18() {
+        let a = [1,2,3];
+        a.push(4,5,6);
+        console.log(a);
+    }
+
+    <!-- Метод unshift добавляет неограниченное количество новых элементов в начало массива. -->
+    function method19() {
+        let a = [1,2,3];
+        a.unshift(4,5,6);
+        console.log(a);
+    }
+
+    <!-- Метод shift удаляет первый элемент из массива. -->
+    function method20() {
+        let buk = ['js', 'css', 'jq'];
+        let elem = buk.shift();
+        console.log(elem);
+    }
+
+    <!-- Метод pop удаляет последний элемент из массива. При этом исходный массив изменяется,а результатом метода возвращается удаленный элемент-->
+    function method21() {
+        let buk = ['js', 'css', 'jq'];
+        let del = buk.pop();
+        console.log(del);
+    }
+
+    function method22() {
+        let arr = ['1','2','3','4','5'];
+        let sub = arr.slice(0, 3);
+        console.log(sub);
+    }
+
+    function method23() {
+        let arr = ['1','2','3','4','5'];
+        let sub = arr.slice(-2);
+        console.log(sub);
+    }
+
+
+    function method24() {
+        let arr = [1,2,3,4,5];
+        arr.splice(1,2);
+        console.log(arr);
+    }
+
+
+    function method25() {
+    let arr = [1,2,3,4,5];
+    arr.splice(1,2);
+    console.log(arr);
+    }
+
+
+    function method26() {
+        let arr = [1, 2, 3, 4, 5];
+        arr.splice(3, 0, 'a', 'b', 'c');
+        console.log(arr);
+    }
+
+    function method27() {
+        let arr = [1, 2, 3, 4, 5];
+        arr.splice(1, 0, 'a', 'b');
+        arr.splice(6, 0, 'c');
+        arr.splice(8, 0, 'e');
+        console.log(arr);
+    }
+
+    function method28() {
+        let arr = [3, 4, 1, 2, 7];
+        console.log(arr.sort());
+    }
+
+    function method29() {
+        let obj = {js:'test', jq: 'hello', css: 'world'};
+        console.log(Object.keys(obj));
+    }
+
+     <!-- Метод map -->
+    function doubleNumber(currentValue) {
+        let array = [1,2,3,4,5];
+        let double = array.map( currentValue => currentValue * 2 );
+        console.log(double);
+    }
+
+    function itog() {
+        let users = [
+            {id: 1, name: "Gulzada", age: 25},
+            {id: 2, name: "Nurzhan", age: 26},
+            {id: 3, name: "Madi", age: 4},
+            {id: 4, name: "Aimira", age: 2},
+            {id: 7, name: "test", age: 0},
+        ]
+
+        // 1. Добавить boy в конец массива
+        let boy = {id: 5, name: "Aldiyar", age: null}
+        users.push(boy)
+        console.log(users);
+
+
+        // 2. Добавить girl в начало массива
+        let girl = {id: 6, name: "Aldiyar", age: null};
+        users.unshift(girl);
+        console.log(users);
+
+
+        // 3. Изпользовать фильтр и убрать людей без возраста
+        let ageUsers = users.filter(itog => itog.age != null);
+        console.log(ageUsers);
+
+
+        // 4. Сортировать по возрасту
+        let byAge = users.slice(0);
+        byAge.sort(function (a, b) {
+            return a.age - b.age;
+        });
+        console.log(byAge);
+
+
+        // 5. Через map() Вернуть только именя людей
+
+        let names = users.map(stu => stu.name);
+        console.log(names);
+
+
+        // 6. Объеденить массив людей в строку
+        let result = users.map(elem => elem.name).join(",");
+        console.log(result);
+
+
+        // 7. Через forEach отобразить в консоле только четный id
+        users.forEach(function (item) {
+            if (item.id % 2 == 0) {
+                console.log(item);
+            }
+        })
+
+    }
+
+    function forTest() {
+        let users = [
+            {id: 1, name: "Gulzada", age: 25},
+            {id: 2, name: "Nurzhan", age: 26},
+            {id: 3, name: "Madi", age: 4},
+            {id: 4, name: "Aimira", age: 2},
+            {id: 7, name: "test", age: 0},
+        ]
+
+        for (let i = 0; i < users.length; i++) {
+            console.log(i)
+            console.log(users[i])
+        }
+
+        users.forEach((item, index, list) => {
+            console.log(index)
+            console.log(item)
+        })
+
+    }
+
+    function method30(a) {
+        if (a==10) {
+            console.log('верно');
+        } else {
+            console.log('не верно');
+        }
+    }
+
+    function method31(time) {
+        if (time >= 6 && time <= 11) {
+            console.log('утро');
+        }
+        if (time >= 12 && time <= 14) {
+            console.log('обед');
+        }
+        if (time >= 18 && time <= 20) {
+            console.log('вечер');
+        }
+        if (time >= 22 || time <= 5) {
+            console.log('ночь');
+        }
+    }
+
+    function method32(lang) {
+        let arr;
+        if (lang == 'ru') {
+             arr = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+        }
+        if (lang == 'en') {
+             arr = ['mn', 'ts', 'wd', 'th', 'fr', 'st', 'sn'];
+        }
+        console.log(arr);
+    }
+
+    function method33(a) {
+        if (a==0) {
+            console.log('верно');
+        } else {
+            console.log('не верно');
+        }
+    }
+
+    function method34(a) {
+        if (a>0) {
+            console.log('верно');
+        } else {
+            console.log('не верно');
+        }
+    }
+    
+    function method35(a) {
+        if (a<0) {
+            console.log('верно');
+        } else {
+            console.log('не верно');
+        }
+    }
+
+    function method36(a) {
+        if (a>=0) {
+            console.log('верно');
+        } else {
+            console.log('не верно');
+        }
+    }
+
+    function method37(a) {
+        if (a<=0) {
+            console.log('верно');
+        } else {
+            console.log('не верно');
+        }
+    }
+
+    function method38(a) {
+        if (a!=0) {
+            console.log('верно');
+        } else {
+            console.log('не верно');
+        }
+    }
+    
+    function method39(a) {
+        if (a == 'test') {
+            console.log('верно');
+        } else {
+            console.log('не верно');
+        }
+    }
+    
+    function method40(a) {
+        if (a === '1') {
+            console.log('верно');
+        } else {
+            console.log('не верно');
+        }
+    }
+    
+    function method41(test) {
+        if (test) {
+            console.log('верно');
+        } else {
+            console.log('не верно');
+        }
+    }
+
+    function method42(test) {
+        if (!test) {
+            console.log('верно');
+        } else {
+            console.log('не верно');
+        }
+    }
+
+    function method43(a) {
+        if (a > 0 && a < 5) {
+            console.log('верно');
+        } else {
+            console.log('не верно');
+        }
+    }
+
+    function method44(a) {
+        if (a == 0 || a == 2) {
+            console.log(a+7);
+        } else {
+            console.log(a/10);
+        }
+    }
+    
+    function method45(a,b) {
+        if (a <= 1 && b >= 3 ) {
+            console.log(a+b);
+        } else {
+            console.log(a-b);
+        }
+    }
+
+    function method46(a,b) {
+        if (a > 2 && a < 11 || b >= 6 && b < 14) {
+            console.log('верно');
+        } else {
+            console.log('не верно');
+        }
+    }
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

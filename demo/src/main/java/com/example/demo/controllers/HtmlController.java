@@ -30,18 +30,23 @@ public class HtmlController {
     }
 
     @GetMapping("shop")
-    public  String shop() {
+    public String shop() {
         return "shop";
     }
 
     @GetMapping("shop-single")
-    public  String shopSingle() {
+    public String shopSingle() {
         return "shop-single";
     }
 
     @GetMapping("admin-panel")
-    public  String adminPanel() {
+    public String adminPanel() {
         return "admin-panel";
+    }
+
+    @GetMapping("task")
+    public String task () {
+        return "task";
     }
 
 
