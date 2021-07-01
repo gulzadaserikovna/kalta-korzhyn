@@ -9,7 +9,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.UUID;
 
 @Service
@@ -42,7 +44,7 @@ public class FileService {
     }
 
     public void deleteFile(String link) {
-        File file = new File(getPath().resolve(link).toString());
+        File file = new File(getPath() + link);
         System.out.println(file);
         file.deleteOnExit();
         if (file.isDirectory()) {
@@ -51,6 +53,12 @@ public class FileService {
                 System.out.println(link);
             } catch (IOException e) {
                 System.out.println(link);
+            }
+        } else if (file.isFile()) {
+            try {
+                Files.delete(Paths.get(file.toURI()));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

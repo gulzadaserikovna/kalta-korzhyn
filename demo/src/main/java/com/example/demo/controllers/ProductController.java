@@ -26,7 +26,6 @@ public class ProductController {
 
     @GetMapping
     public Object getAll() {
-
         return productRepository.findAll();
     }
 
@@ -51,8 +50,7 @@ public class ProductController {
     public Object getAllImg(
             @PathVariable("product_id") Long productId
     ) {
-//        return productImgRepository.findAll();
-        return null;
+        return productRepository.findById(productId);
     }
 
     @PostMapping("image")
@@ -72,6 +70,17 @@ public class ProductController {
         );
 
         productImgRepository.save(productImgEntity);
+    }
+
+    @DeleteMapping("image/{id}")
+    public void delPicture(
+            @PathVariable("id") Long id
+    ) {
+        ProductImgEntity productImgEntity = productImgRepository.getById(id);
+        if (!productImgEntity.getLink().isEmpty()) {
+            fileService.deleteFile(productImgEntity.getLink());
+        }
+        productImgRepository.deleteById(id);
     }
 
 }

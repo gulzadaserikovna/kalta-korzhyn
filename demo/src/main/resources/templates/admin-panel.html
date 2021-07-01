@@ -12,6 +12,8 @@
 </head>
 <body>
 <div id="app">
+
+
     <!-- Модальное окно -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -46,6 +48,34 @@
         </div>
     </div>
 
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card" style="width: 18rem;" v-for="item in product.productImgs">
+                        <img :src="'/img' + item.link" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.name}}</h5>
+                            <p class="card-text"></p>
+                            <a href="#" class="btn btn-danger" @click="delPicture(item)" >Удалить</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -68,6 +98,7 @@
             </div>
         </div>
     </div>
+
 
     <div class="container">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -103,6 +134,11 @@
                                 data-bs-toggle="modal" data-bs-target="#exampleModal"
                                 @click="copy(item)">
                             <i class="far fa-edit"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary"
+                                data-bs-toggle="modal" data-bs-target="#imageModal"
+                                @click="copy(item)">
+                            <i class="fas fa-image"></i>
                         </button>
                         <button type= "button" class="btn btn-primary"
                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop"
@@ -184,6 +220,14 @@
                 })
                     .then(response => this.groceryList())
             },
+
+            //Удаляяет картинки
+            delPicture: function (image) {
+                fetch("/api/product/image/" + image.id,  {
+                    method: "DELETE"
+                })
+            },
+
             // GALLERY
             syncImage: function (e) {
                 e.preventDefault();
